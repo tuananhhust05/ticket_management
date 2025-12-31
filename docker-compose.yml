@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: tickets-mongodb
+    restart: always
+    ports:
+      - "27027:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: tickets_db
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - tickets-network
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: tickets-api
+    restart: always
+    ports:
+      - "3003:3001"
+    environment:
+      NODE_ENV: production
+      PORT: 3003
+      MONGODB_URI: mongodb://admin:password123@mongodb:27017/tickets_db?authSource=admin
+      JWT_SECRET: your-secret-key-change-in-production
+    depends_on:
+      - mongodb
+    networks:
+      - tickets-network
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: tickets-frontend
+    restart: always
+    ports:
+      - "3006:3000"
+    depends_on:
+      - api
+    networks:
+      - tickets-network
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+networks:
+  tickets-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+
+
