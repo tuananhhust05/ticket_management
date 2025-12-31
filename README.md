@@ -51,7 +51,7 @@ docker-compose up -d
 
 3. 访问应用：
    - 前端: http://localhost:3000/tickets-manager/
-   - API: http://localhost:3004/tickets-manager/api/
+   - API: https://forskale.com/tickets-manager/api/
 
 ### 本地开发
 
