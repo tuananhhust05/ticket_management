@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:3003/tickets-manager/api';
+const API_BASE_URL = 'http://localhost:3004/tickets-manager/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,

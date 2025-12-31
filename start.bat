@@ -26,7 +26,7 @@ echo.
 echo ✅ 服务已启动！
 echo.
 echo 📱 前端: http://localhost:3000/tickets-manager/
-echo 🔌 API: http://localhost:3003/tickets-manager/api/
+echo 🔌 API: http://localhost:3004/tickets-manager/api/
 echo.
 echo 查看日志: docker-compose logs -f
 echo 停止服务: docker-compose down

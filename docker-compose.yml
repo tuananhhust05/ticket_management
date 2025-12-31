@@ -23,10 +23,10 @@ services:
     container_name: tickets-api
     restart: always
     ports:
-      - "3003:3001"
+      - "3004:3004"
     environment:
       NODE_ENV: production
-      PORT: 3003
+      PORT: 3004
       MONGODB_URI: mongodb://admin:password123@mongodb:27017/tickets_db?authSource=admin
       JWT_SECRET: your-secret-key-change-in-production
     depends_on:
